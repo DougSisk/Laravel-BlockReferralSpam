@@ -20,7 +20,7 @@ After updating composer, add the `DougSisk\BlockReferralSpam\Middleware\BlockRef
 
 ### Laravel 5.2+
 
-Add `\DougSisk\BlockReferralSpam\Middleware\BlockReferralSpam::class` to your `web` middleware group or any others you wish to use:
+Add `\DougSisk\BlockReferralSpam\Middleware\BlockReferralSpam::class` to your `web` middleware group in `app/Http/Kernel.php` or any others you wish to use:
 ```
 protected $middlewareGroups = [
     'web' => [
@@ -30,7 +30,7 @@ protected $middlewareGroups = [
 ```
 
 ### Laravel 5.0 & 5.1
-Add `'DougSisk\BlockReferralSpam\Middleware\BlockReferralSpam'` to your middleware stack:
+Add `'DougSisk\BlockReferralSpam\Middleware\BlockReferralSpam'` to your middleware stack in `app/Http/Kernel.php`:
 ```
 protected $middleware = [
     'DougSisk\BlockReferralSpam\Middleware\BlockReferralSpam',
