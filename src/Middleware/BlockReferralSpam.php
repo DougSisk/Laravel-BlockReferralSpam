@@ -15,7 +15,7 @@ class BlockReferralSpam
      */
     public function handle($request, Closure $next)
     {
-        $spammerList = base_path('vendor/piwik/referrer-spam-blacklist/spammers.txt');
+        $spammerList = config('app.referral_spam_list_location', base_path('vendor/piwik/referrer-spam-blacklist/spammers.txt'));
 
         if (file_exists($spammerList)) {
             $blockedHosts = file($spammerList, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
