@@ -18,7 +18,8 @@ composer require dougsisk/laravel-block-referral-spam
 
 After updating composer, add the `DougSisk\BlockReferralSpam\Middleware\BlockReferralSpam` to your middleware stack:
 
-**Laravel 5.2+**
+### Laravel 5.2
+
 Add `\DougSisk\BlockReferralSpam\Middleware\BlockReferralSpam::class` to your `web` middleware group or any others you wish to use:
 ```
 protected $middlewareGroups = [
@@ -28,7 +29,7 @@ protected $middlewareGroups = [
 ];
 ```
 
-**Laravel 5.0 & 5.1**
+### Laravel 5.0 & 5.1
 Add `'DougSisk\BlockReferralSpam\Middleware\BlockReferralSpam'` to your middleware stack:
 ```
 protected $middleware = [
