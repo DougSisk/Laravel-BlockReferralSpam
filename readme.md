@@ -43,7 +43,7 @@ Configuration
 By default, the list of domains to block will be loaded from `vendor/piwik/referrer-spam-blacklist/spammers.txt`. This is under the assumption your vendor folder is installed in the base path of your app. If your vendor folder is not in your base path or you wish to use a custom list file, add the following line to your `config/app.php`:
 
 ```
-'referral_spam_list_location' => base_path('/my-folder/my-list.txt'),
+'referral_spam_list_location' => base_path('my-folder/my-list.txt'),
 ```
 
 Please remember to follow the formatting in [the original list file](https://github.com/piwik/referrer-spam-blacklist/blob/master/spammers.txt) should you make your own custom list.
