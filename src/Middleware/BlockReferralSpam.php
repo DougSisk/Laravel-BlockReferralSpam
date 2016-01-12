@@ -15,29 +15,26 @@ class BlockReferralSpam
      */
     public function handle($request, Closure $next)
     {
+        $referer = utf8_encode($request->headers->get('referer'));
         $spammerList = config('app.referral_spam_list_location', base_path('vendor/piwik/referrer-spam-blacklist/spammers.txt'));
 
-        if (file_exists($spammerList)) {
+        // Make sure there's a referrer
+        if (!empty($referer) && file_exists($spammerList)) {
             $blockedHosts = file($spammerList, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
             foreach ($blockedHosts as $i => $host) {
                 $blockedHosts[$i] = trim(utf8_encode($host));
             }
+    
+            preg_match('/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/', $referer, $matches);
+            $fullDomain = $matches[1];
 
-            $referer = utf8_encode($request->headers->get('referer'));
+            // Get root domain
+            $domainParts = explode('.', $fullDomain);
+            $rootDomain = $domainParts[count($domainParts) - 2] . '.' . $domainParts[count($domainParts) - 1];
 
-            // Make sure there's a referrer
-            if (strlen($referer)) {
-                preg_match('/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/', $referer, $matches);
-                $fullDomain = $matches[1];
-
-                // Get root domain
-                $domainParts = explode('.', $fullDomain);
-                $rootDomain = $domainParts[count($domainParts) - 2] . '.' . $domainParts[count($domainParts) - 1];
-
-                if (in_array($fullDomain, $blockedHosts) || in_array($rootDomain, $blockedHosts)) {
-                    return response('Spam referral.', 401);
-                }
+            if (in_array($fullDomain, $blockedHosts) || in_array($rootDomain, $blockedHosts)) {
+                return response('Spam referral.', 401);
             }
         }
 
