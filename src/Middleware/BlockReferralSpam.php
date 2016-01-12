@@ -19,12 +19,20 @@ class BlockReferralSpam
 
         if (file_exists($spammerList)) {
             $blockedHosts = file($spammerList, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-            $referer = parse_url($request->headers->get('referer'), PHP_URL_HOST);
 
-            // Remove WWWW
-            $referer = preg_replace('/(www\.)/i', '', $referer);
+            foreach ($blockedHosts as $i => $host) {
+                $blockedHosts[$i] = trim(utf8_encode($host));
+            }
 
-            if (in_array($referer, $blockedHosts)) {
+            $referer = utf8_encode($request->headers->get('referer'));
+            preg_match('/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/', $referer, $matches);
+            $fullDomain = $matches[1];
+
+            // Get root domain
+            $domainParts = explode('.', $fullDomain);
+            $rootDomain = $domainParts[count($domainParts) - 2] . '.' . $domainParts[count($domainParts) - 1];
+
+            if (in_array($fullDomain, $blockedHosts) || in_array($rootDomain, $blockedHosts)) {
                 return response('Spam referral.', 401);
             }
         }

@@ -32,4 +32,13 @@ class LaravelBlockReferralSpamTest extends Orchestra\Testbench\TestCase
 
         $this->assertResponseStatus(401);
     }
+
+    public function testInvalidSubdomainRequest()
+    {
+        $this->call('GET', 'hello', [], [], [], [
+            'HTTP_REFERER' => "http://с.новым.годом.рф"
+        ]);
+
+        $this->assertResponseStatus(401);
+    }
 }
