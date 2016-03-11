@@ -31,7 +31,11 @@ class BlockReferralSpam
 
             // Get root domain
             $domainParts = explode('.', $fullDomain);
-            $rootDomain = $domainParts[count($domainParts) - 2] . '.' . $domainParts[count($domainParts) - 1];
+            $rootDomain = $domainParts[0];
+            
+            if (count($domainParts) > 1) {
+                $rootDomain = $domainParts[count($domainParts) - 2] . '.' . $domainParts[count($domainParts) - 1];
+            }
 
             if (in_array($fullDomain, $blockedHosts) || in_array($rootDomain, $blockedHosts)) {
                 return response('Spam referral.', 401);
