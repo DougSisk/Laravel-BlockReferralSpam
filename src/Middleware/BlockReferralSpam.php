@@ -15,7 +15,7 @@ class BlockReferralSpam
      */
     public function handle($request, Closure $next)
     {
-        $referer = utf8_encode($request->headers->get('referer'));
+        $referer = mb_convert_encoding($request->headers->get('referer'), 'UTF-8');
         $spammerList = config('app.referral_spam_list_location', base_path('vendor/piwik/referrer-spam-blacklist/spammers.txt'));
 
         // Make sure there's a referrer
@@ -23,7 +23,7 @@ class BlockReferralSpam
             $blockedHosts = file($spammerList, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
             foreach ($blockedHosts as $i => $host) {
-                $blockedHosts[$i] = trim(utf8_encode($host));
+                $blockedHosts[$i] = trim(mb_convert_encoding($host, 'UTF-8'));
             }
     
             preg_match('/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/', $referer, $matches);
