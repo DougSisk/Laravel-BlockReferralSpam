@@ -4,7 +4,7 @@ class LaravelBlockReferralSpamTest extends Orchestra\Testbench\BrowserKit\TestCa
 {
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('app.referral_spam_list_location', dirname(__FILE__) . '/../vendor/matomo/referrer-spam-blacklist/spammers.txt');
+        $app['config']->set('app.referral_spam_list_location', dirname(__FILE__) . '/../vendor/matomo/referrer-spam-list/spammers.txt');
 
         $app['router']->get('hello', function () {
             return 'hello world';

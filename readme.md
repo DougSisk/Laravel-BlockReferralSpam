@@ -5,7 +5,7 @@ Laravel Block Referral Spam
 [![Total Downloads](https://poser.pugx.org/dougsisk/laravel-block-referral-spam/downloads)](https://packagist.org/packages/dougsisk/laravel-block-referral-spam)
 [![License](https://poser.pugx.org/dougsisk/laravel-block-referral-spam/license)](https://packagist.org/packages/dougsisk/laravel-block-referral-spam)
 
-Middleware for **Laravel 5.5+** that blocks referrer spam using a list from [Matomo](https://github.com/matomo-org/referrer-spam-blacklist).
+Middleware for **Laravel 5.5+** that blocks referrer spam using a list from [Matomo](https://github.com/matomo-org/referrer-spam-list).
 
 Installation
 ------------
@@ -28,13 +28,13 @@ protected $middlewareGroups = [
 Configuration
 -------------
 
-By default, the list of domains to block will be loaded from `vendor/matomo/referrer-spam-blacklist/spammers.txt`. This is under the assumption your vendor folder is installed in the base path of your app. If your vendor folder is not in your base path or you wish to use a custom list file, add the following line to your `config/app.php`:
+By default, the list of domains to block will be loaded from `vendor/matomo/referrer-spam-list/spammers.txt`. This is under the assumption your vendor folder is installed in the base path of your app. If your vendor folder is not in your base path or you wish to use a custom list file, add the following line to your `config/app.php`:
 
 ```
 'referral_spam_list_location' => base_path('my-folder/my-list.txt'),
 ```
 
-Please remember to follow the formatting in [the original list file](https://github.com/matomo-org/referrer-spam-blacklist/blob/master/spammers.txt) should you make your own custom list.
+Please remember to follow the formatting in [the original list file](https://github.com/matomo-org/referrer-spam-list/blob/master/spammers.txt) should you make your own custom list.
 
 License
 -------

@@ -16,7 +16,7 @@ class BlockReferralSpam
     public function handle($request, Closure $next)
     {
         $referer = mb_convert_encoding($request->headers->get('referer'), 'UTF-8');
-        $spammerList = config('app.referral_spam_list_location', base_path('vendor/matomo/referrer-spam-blacklist/spammers.txt'));
+        $spammerList = config('app.referral_spam_list_location', base_path('vendor/matomo/referrer-spam-list/spammers.txt'));
 
         // Make sure there's a referrer
         if (!empty($referer) && file_exists($spammerList)) {
