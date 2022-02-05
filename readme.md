@@ -1,6 +1,5 @@
 Laravel Block Referral Spam
 ==============================
-[![Build Status](https://travis-ci.org/DougSisk/Laravel-BlockReferralSpam.svg?branch=master)](https://travis-ci.org/DougSisk/Laravel-BlockReferralSpam)
 [![Latest Stable Version](https://poser.pugx.org/dougsisk/laravel-block-referral-spam/version)](https://packagist.org/packages/dougsisk/laravel-block-referral-spam)
 [![Total Downloads](https://poser.pugx.org/dougsisk/laravel-block-referral-spam/downloads)](https://packagist.org/packages/dougsisk/laravel-block-referral-spam)
 [![License](https://poser.pugx.org/dougsisk/laravel-block-referral-spam/license)](https://packagist.org/packages/dougsisk/laravel-block-referral-spam)
