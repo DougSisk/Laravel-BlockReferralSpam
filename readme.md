@@ -1,3 +1,5 @@
+> # ⚠️ This package is no longer maintained
+
 Laravel Block Referral Spam
 ==============================
 [![Latest Stable Version](https://poser.pugx.org/dougsisk/laravel-block-referral-spam/version)](https://packagist.org/packages/dougsisk/laravel-block-referral-spam)
